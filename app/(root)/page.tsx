@@ -1,5 +1,7 @@
 import { auth } from "@/auth";
 import SearchForm from "@/components/SearchForm";
+import { sanityFetch } from "@/sanity/lib/live";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({
   searchParams,
@@ -9,7 +11,7 @@ export default async function Home({
   const query = (await searchParams).query;
   const params = { search: query || null };
   const session = await auth();
-  //   const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
   return (
     <>
