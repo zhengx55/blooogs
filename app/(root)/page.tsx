@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import SearchForm from "@/components/SearchForm";
+import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 import { sanityFetch } from "@/sanity/lib/live";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
@@ -31,8 +32,7 @@ export default async function Home({
         <p className="text-30-semibold">
           {query ? `Search results for "${query}"` : "All Startups"}
         </p>
-
-        {/* <ul className="mt-7 card_grid">
+        <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
             posts.map((post: StartupTypeCard) => (
               <StartupCard key={post?._id} post={post} />
@@ -40,7 +40,7 @@ export default async function Home({
           ) : (
             <p className="no-results">No startups found</p>
           )}
-        </ul> */}
+        </ul>
       </section>
 
       {/* <SanityLive /> */}
