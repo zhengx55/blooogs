@@ -1,6 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import { AUTHOR_BY_GITHUB_ID_QUERY } from "@/sanity/lib/queries";
-// import { writeClient } from "@/sanity/lib/write-client";
+import { writeClient } from "@/sanity/lib/write-client";
 import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 
@@ -15,18 +15,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           .fetch(AUTHOR_BY_GITHUB_ID_QUERY, {
             id,
           });
-
-        // if (!existingUser) {
-        //   await writeClient.create({
-        //     _type: "author",
-        //     id,
-        //     name,
-        //     username: login,
-        //     email,
-        //     image,
-        //     bio: bio || "",
-        //   });
-        // }
+        if (!existingUser) {
+          await writeClient.create({
+            _type: "author",
+            id,
+            name,
+            username: login,
+            email,
+            image,
+            bio: bio || "",
+          });
+        }
       }
 
       return true;
